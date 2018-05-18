@@ -1,0 +1,17 @@
+
+{% block content %}
+
+    <div style="margin-top: 5%">
+        <h2 class="text-center">{{ block('title') }}</h2>
+    </div>
+
+    <div>
+        {% if catSport %}
+            <div class="table-responsive">
+                {{ catSport.LibelleCatSport }}
+            </div>
+        {% else %}
+            <div class="alert alert-warning">Aucune categorie trouvée.</div>
+        {% endif %}
+    </div>
+{% endblock %}

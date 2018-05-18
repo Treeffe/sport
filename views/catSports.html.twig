@@ -15,11 +15,13 @@
                     <thead>
                     <tr>
                         <th>Libelle</th>
+                        <th>Lien</th>
                     </tr>
                     </thead>
                     {% for catSport in catSports %}
                         <tr>
                             <td>{{ catSport.libelleCatSport }}</td>
+                            <td><a href="{{ app.request.basepath }}/CatSport/{{ catSport.idCatSport }} "> {{ catSport.libelleCatSport }}</a></td>
                         </tr>
                     {% endfor %}
                 </table>

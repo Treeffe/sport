@@ -39,27 +39,25 @@ class CatSportDAO extends DAO
 
     }
 
+
     public function findByIdCatSport($id)
     {
-        $catSports = array();
-        $results = $this->getDb()->select('*')
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
             ->from('catsport')
-            ->where('idCatSport = :identifier')
-            ->orderBy('libelleCatSport', 'ASC')
-            ->setParameter('identifier', $id);
+            ->where('idCatSport ='.$id)
+            ;
 
+        $row = $this->getDb()->fetchAssoc($query);
 
-        foreach ($results as $row) {
-            $catSportLib = $row['libCatSport'];
-            $catSports[$catSportLib] = $this->buildDomainObject($row);
-        }
-        return $catSports;
-
+        return $this->buildDomainObject($row);
     }
 
     public function RemoveCatSport($id)
     {
-
+        $catSport = $this->findByIdCatSport($id);
+        $this->getDb()->remove('catSport', $catSport);
     }
 
     public function AddCatSport(CatSport $catSport)

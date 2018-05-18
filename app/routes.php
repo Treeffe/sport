@@ -48,3 +48,6 @@ $app->get('/login', function(Request $request) use ($app) {
 
 $app->get('/CatSport', "sport\Controller\UpgradeController::CatSportAction")
     ->bind('CatSport');
+
+$app->match('/CatSport/{id}', "sport\Controller\UpgradeController::IdCatSportAction")
+    ->bind('IdCatSport');

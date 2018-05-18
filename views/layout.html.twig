@@ -29,25 +29,29 @@
                     </button>
                     <a class="navbar-brand" href="{{ path('home') }}">Aide Mémoire</a>
                 </div>
-                <div class="collapse navbar-collapse" id="navbar-collapse-target">*
+                <div class="collapse navbar-collapse" id="navbar-collapse-target">
+                    <ul class="nav navbar-nav ">
+                        <li>
+                            <a href="{{ path('CatSport') }}">TEST</a>
+                        </li>
+                    </ul>
                       <ul class="nav navbar-nav navbar-right">
-                          <li>
-                              <a href="{{ path('CatSport') }}">Les Categories</a>
-                          </li>
-                    {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+                          {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
 
                         
-                  {% else %}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                          {% else %}
+                                <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-user"></span> S'identifier <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ path('login') }}">Se connecter</a></li>
                                         <li><a href="{{ path('inscription') }}"> S'inscrire</a></li>
                                     </ul>
-                        </li>
-                 {% endif %}
-                    
+                                </li>
+
+                          {% endif %}
+
                     </ul>
                 </div>
             </div><!-- /.container -->

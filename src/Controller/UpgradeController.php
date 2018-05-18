@@ -21,4 +21,11 @@ class UpgradeController
         $catSports = $app['dao.catSport']->findAllCatSport();
         return $app['twig']->render('catSports.html.twig', array('catSports' => $catSports));
     }
+
+    public function IdCatSportAction($id, Request $request, Application $app){
+        $catSport = $app['dao.catSport']->findByIdCatSport($id);
+
+        return $app['twig']->render('unecat.html.twig', array(
+            'catSport' => $catSport));
+    }
 }
