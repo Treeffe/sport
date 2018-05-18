@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use sport\Domain\User;
 use sport\Form\Type\CommentType;
 use sport\Form\Type\UserType;
+use sport\Controller\UpgradeController;
 
 // Page d'accueil
 $app->get('/', function () use ($app) {
@@ -44,3 +45,6 @@ $app->get('/login', function(Request $request) use ($app) {
         'last_username' => $app['session']->get('_security.last_username'),
     ));
 })->bind('login');
+
+$app->get('/CatSport', "sport\Controller\UpgradeController::CatSportAction")
+    ->bind('CatSport');

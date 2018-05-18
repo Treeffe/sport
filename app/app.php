@@ -46,3 +46,7 @@ $app['dao.user'] = $app->share(function ($app) {
     return new sport\DAO\UserDAO($app['db']);
 });
 
+$app['dao.catSport'] = $app->share(function ($app) {
+    return new sport\DAO\CatSportDAO($app['db']);
+});
+
