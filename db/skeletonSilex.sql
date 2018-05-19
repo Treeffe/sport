@@ -28,7 +28,8 @@ SET time_zone = "+00:00";
       `loginUser` text NOT NULL,
       `mdpUser` text NOT NULL,
       `saltSys` text NOT NULL,
-        `role` varchar(255) NOT NULL
+        `role` varchar(255) NOT NULL,
+        primary key (idUser)
     );
 
     CREATE TABLE CatSport (
