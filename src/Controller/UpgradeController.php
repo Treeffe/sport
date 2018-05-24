@@ -6,7 +6,7 @@
  * Time: 16:21
  */
 namespace sport\Controller;
-use Silex\Api\ControllerProviderInterface;
+//use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,11 +17,13 @@ use sport\Form\Type\UserType;
 
 class UpgradeController
 {
+    /**  Controller liste des Categorie de sport */
     public function CatSportAction(Application $app) {
         $catSports = $app['dao.catSport']->findAllCatSport();
         return $app['twig']->render('catSports.html.twig', array('catSports' => $catSports));
     }
 
+    /** Controller : detail d'une categorie de sport */
     public function IdCatSportAction($id, Request $request, Application $app){
         $catSport = $app['dao.catSport']->findByIdCatSport($id);
 
