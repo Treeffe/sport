@@ -7,6 +7,7 @@
  */
 
 namespace sport\DAO;
+
 use sport\Domain\CatSport;
 
 class CatSportDAO extends DAO
@@ -46,8 +47,7 @@ class CatSportDAO extends DAO
             ->createQueryBuilder()
             ->select('*')
             ->from('catsport')
-            ->where('idCatSport ='.$id)
-            ;
+            ->where('idCatSport ='.$id);
 
         $row = $this->getDb()->fetchAssoc($query);
 

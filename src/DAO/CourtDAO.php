@@ -15,5 +15,26 @@ use sport\Domain\CatSport;
 
 class CourtDAO extends DAO
 {
+    public function setUserDAO(UserDAO $userDAO) {
+        $this->setUserDAO($userDAO);
+    }
 
+    public function setCatSportDAO(CatSportDAO $catSportDAO) {
+        $this->setCatSportDAO($catSportDAO);
+    }
+
+    /** CONSTRUCTEUR */
+    protected function buildDomainObject($row) {
+
+    }
+
+    /** Recherche d'un COURT */
+
+    /** Recherche Liste COURT par SPORT*/
+
+    /** Add a COURT */
+
+    /** Remove a COURT */
+
+    /** Modification a COURT */
 }

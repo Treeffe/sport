@@ -3,9 +3,16 @@
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\HttpFoundation\Response;
+
 use sport\Domain\User;
+use sport\Domain\Sport;
+use sport\Domain\Court;
+use sport\Domain\CourtSport;
+use sport\Domain\CatSport;
+
 use sport\Form\Type\CommentType;
 use sport\Form\Type\UserType;
+
 use sport\Controller\UpgradeController;
 
 // Page d'accueil

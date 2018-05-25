@@ -50,3 +50,25 @@ $app['dao.catSport'] = $app->share(function ($app) {
     return new sport\DAO\CatSportDAO($app['db']);
 });
 
+$app['dao.sport'] = $app->share(function ($app) {
+    return new sport\DAO\SportDAO($app['db']);
+});
+
+$app['dao.court'] = $app->share(function ($app) {
+    //Initialisation
+    $courtDAO = new \sport\DAO\CourtDAO($app['db']);
+    $courtDAO->setUser(sport\DAO\UserDAO($app['db']));
+    $courtDAO->setCatSport($app['dao.catSport']);
+
+    return $courtDAO;
+});
+
+$app['dao.courtSport'] = $app->share(function ($app) {
+    // Initialisation
+    $courtSport = new \sport\DAO\CourtSportDAO($app['db']);
+    $courtSport->setCourt($app['dao.court']);
+    $courtSport->setSport($app['dao.sport']);
+
+    return $courtSport;
+});
+

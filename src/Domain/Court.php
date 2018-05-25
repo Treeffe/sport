@@ -13,7 +13,7 @@ class Court
 {
     //Attribut
     private $idCourt;
-    private $numeroCourt;
+    private $numeroRueCourt;
     private $rueCourt;
     private $cpCourt;
     private $villeCourt;
@@ -33,12 +33,12 @@ class Court
     }
 
     //
-    public function getNumeroCourt() {
-        return $this->numeroCourt;
+    public function getNumeroRueCourt() {
+        return $this->numeroRueCourt;
     }
 
-    public function setNumeroCourt($numeroCourt) {
-        $this->numeroCourt = $numeroCourt;
+    public function setNumeroRueCourt($numeroRueCourt) {
+        $this->numeroRueCourt = $numeroRueCourt;
     }
 
     //
@@ -51,12 +51,12 @@ class Court
     }
 
     //
-    public function getCPCourt() {
-        return $this->rueCourt;
+    public function getCpCourt() {
+        return $this->cpCourt;
     }
 
-    public function setCPCourt($rueCourt) {
-        $this->rueCourt = $rueCourt;
+    public function setCpCourt($cpCourt) {
+        $this->cpCourt = $cpCourt;
     }
 
     //
