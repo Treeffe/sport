@@ -14,7 +14,10 @@ class SportDAO extends DAO
 {
     /** CONSTRUCTEUR */
     protected function buildDomainObject($row) {
-
+        $sport = new Sport();
+        $sport->setIdSport($row['idSport']);
+        $sport->setLibelleSport($row['libelleSport']);
+        return $sport;
     }
 
     /** Recherche de tous les sport */

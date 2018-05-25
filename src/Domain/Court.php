@@ -18,6 +18,7 @@ class Court
     private $cpCourt;
     private $villeCourt;
     private $imageCourt;
+    private $descriptionCourt;
 
     private $user;
     private $catSport;
@@ -75,6 +76,15 @@ class Court
 
     public function setImageCourt($imageCourt) {
         $this->imageCourt = $imageCourt;
+    }
+
+    //
+    public function getDescriptionCourt() {
+        return $this->descriptionCourt;
+    }
+
+    public function setDescriptionCourt($descriptionCourt) {
+        $this->descriptionCourt = $descriptionCourt;
     }
 
     //

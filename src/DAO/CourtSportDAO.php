@@ -14,19 +14,36 @@ use sport\Domain\Court;
 
 class CourtSportDAO extends DAO
 {
+    private $courtDAO;
+    private $sportDAO;
+
     public function setCourtDAO(CourtDAO $courtDAO) {
-        $this->setCourtDAO($courtDAO);
+        $this->courtDAO($courtDAO);
     }
 
     public function setSportDAO(SportDAO $sportDAO) {
-        $this->setSportDAO($sportDAO);
+        $this->sportDAO($sportDAO);
     }
 
     /** CONSTRUCTEUR */
     protected function buildDomainObject($row) {
+        $courtSport = new CourtSport();
+        $courtSport->setIdCourtSport($row['idCourtSport']);
 
+        $idSport = $row['idSport'];
 
-        
+        if (array_key_exists('idCourt', $row)) {
+            $idCourt = $row['idCourt'];
+            $court = $this->courtDAO->find($idCourt);
+            $courtSport->setCourt($court);
+        }
+
+        if (array_key_exists('idSport', $row)) {
+            $idSport = $row['idSport'];
+            $sport = $this->sportDAO->find($idSport);
+            $courtSport->setSport($sport);
+        }
+        return $courtSport;
     }
 
     /** Recherche d'une association COURT / SPORT */
