@@ -51,7 +51,7 @@ SET time_zone = "+00:00";
       rueCourt varchar(255) NOT NULL,
       cpCourt varchar(5) NOT NULL,
       imageCourt varchar(255) NOT NULL,
-
+      descriptionCourt varchar(255) NOT NULL,
       idUser int NOT NULL,
       idCatSport int NOT NULL,
       PRIMARY KEY (idCourt)
