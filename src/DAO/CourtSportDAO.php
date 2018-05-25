@@ -18,11 +18,11 @@ class CourtSportDAO extends DAO
     private $sportDAO;
 
     public function setCourtDAO(CourtDAO $courtDAO) {
-        $this->courtDAO($courtDAO);
+        $this->courtDAO = $courtDAO;
     }
 
     public function setSportDAO(SportDAO $sportDAO) {
-        $this->sportDAO($sportDAO);
+        $this->sportDAO = $sportDAO;
     }
 
     /** CONSTRUCTEUR */
@@ -48,7 +48,25 @@ class CourtSportDAO extends DAO
 
     /** Recherche d'une association COURT / SPORT */
 
-    /** Recherche d'une liste association COURT / SPORT par SPORT */
+    /** Recherche d'une liste d'association COURT / SPORT par SPORT */
+
+    public function findAllCourtSports()
+    {
+        $courtSports = array();
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
+            ->from('courtSport');
+
+        $results = $this->getDb()->fetchAll($query);
+
+        foreach ($results as $row) {
+            $idCourtSport = $row['idCourt'];
+            $courtSports[$idCourtSport] = $this->buildDomainObject($row);
+        }
+
+        return $courtSports;
+    }
 
     /** Remove d'une association COURT / SPORT */
 

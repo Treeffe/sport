@@ -53,8 +53,13 @@ $app->get('/login', function(Request $request) use ($app) {
     ));
 })->bind('login');
 
+//Routes pour CatSports
 $app->get('/CatSport', "sport\Controller\UpgradeController::CatSportAction")
     ->bind('CatSport');
 
 $app->match('/CatSport/{id}', "sport\Controller\UpgradeController::IdCatSportAction")
     ->bind('IdCatSport');
+
+//Routes pour les Courts
+$app->get('/Courts', "sport\Controller\CourtController::CourtsAction")
+    ->bind('courts');

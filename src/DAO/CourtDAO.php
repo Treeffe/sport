@@ -11,6 +11,8 @@ namespace sport\DAO;
 use sport\Domain\User;
 use sport\Domain\Court;
 use sport\Domain\CatSport;
+use sport\DAO\UserDAO;
+use sport\DAO\CatSportDAO;
 
 
 class CourtDAO extends DAO
@@ -18,13 +20,12 @@ class CourtDAO extends DAO
     private $userDAO;
     private $catSportDAO;
 
-
-    public function setUserDAO(UserDAO $userDAO) {
-        $this->userDAO($userDAO);
+    public function setUserDAO($userDAO) {
+        $this->userDAO = $userDAO;
     }
 
-    public function setCatSportDAO(CatSportDAO $catSportDAO) {
-        $this->catSportDAO($catSportDAO);
+    public function setCatSportDAO($catSportDAO) {
+        $this->catSportDAO = $catSportDAO;
     }
 
     /** CONSTRUCTEUR */
@@ -57,6 +58,25 @@ class CourtDAO extends DAO
     /** Recherche d'un COURT */
 
     /** Recherche Liste COURT par SPORT*/
+
+    /** Recherche de tous les COURT */
+    public function findAllCourt()
+    {
+        $courts = array();
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
+            ->from('court');
+
+        $results = $this->getDb()->fetchAll($query);
+
+        foreach ($results as $row) {
+            $idCourt = $row['idCourt'];
+            $courts[$idCourt] = $this->buildDomainObject($row);
+        }
+
+        return $courts;
+    }
 
     /** Add a COURT */
 
