@@ -45,7 +45,7 @@
                             <a href="{{ path('courts') }}">Tous les terrains</a>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-user"></span> Categorie <b class="caret"></b>
@@ -65,36 +65,12 @@
                             </ul>
                         </li>
                     </ul>
-
-                        <ul class="nav navbar-nav navbar-left ">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle " data-toggle="dropdown">Terrain de sport<b class="caret"></b> </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="#">Sport 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Sport 2</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
                             {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
                             <ul class="nav navbar-nav ">
                                 <li>
                                     <a href="#">Ajout de terrains</a>
                                 </li>
                             </ul>
-
-                                <ul class="nav navbar-nav ">
-                                    <li>
-                                        <a href="#">Ajout de terrains</a>
-                                    </li>
-                                </ul>
                             {% endif %}
 
 
@@ -126,8 +102,9 @@
                                     </ul>
                                 </li>
                           {% endif %}
+                      </ul>
                 </div>
-                    </ul>
+
                 </div>
 
             </div><!-- /.container -->
