@@ -10,6 +10,7 @@
 
     <div>
         {% if courts %}
+            trucbien
             <div class="table-responsive">
                 <table class="table table-hover table-condensed">
                     <thead>
@@ -21,13 +22,16 @@
                     </tr>
                     </thead>
                     {% for court in courts %}
-                        <tr>
-                            <td>{{ court.imageCourt }}</td>
-                            <td>
-                                {{ court.court.numeroRueCourt }} {{ court.court.rueCourt }} {{ court.court.cpCourt }} {{ court.court.villeCourt }}
-                            </td>
-                            <Sport>{{ court.sport.libelleSport }}</Sport>
-                        </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>{{ court.imageCourt }} </td>
+                                <td>
+                                    {{ court.court.numeroRueCourt }} {{ court.court.rueCourt }} {{ court.court.cpCourt }} {{ court.court.villeCourt }}
+                                </td>
+                                <Sport>{{ court.sport.libelleSport }}</Sport>
+                            </tr>
+
                     {% endfor %}
                 </table>
             </div>

@@ -21,10 +21,15 @@ class CourtController
 
     /** Controller liste de COURT par categorie*/
 
+
     /** Controller liste COURT par USER */
 
-    /** Controller détail d'un COURT*/
 
+    /** Controller détail d'un COURT*/
+    public function CourtAction(Application $app,$id) {
+        $court = $app['dao.courtSport']->findCourtSport($id);
+        return $app['twig']->render('CourtDetailed.html.twig', array('court' => $court));
+    }
     /** Controller remove d'un COURT */
 
     /** Controller ajout d'un COURT */

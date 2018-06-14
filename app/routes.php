@@ -57,9 +57,17 @@ $app->get('/login', function(Request $request) use ($app) {
 $app->get('/CatSport', "sport\Controller\UpgradeController::CatSportAction")
     ->bind('CatSport');
 
+//Routes Test
 $app->match('/CatSport/{id}', "sport\Controller\UpgradeController::IdCatSportAction")
     ->bind('IdCatSport');
 
-//Routes pour les Courts
+//Routes pour les Courts avec son sport
 $app->get('/Courts', "sport\Controller\CourtController::CourtsAction")
     ->bind('courts');
+
+//Route un Courts avec son sport
+$app->get('/Courts/{id}', "sport\Controller\CourtController::CourtAction")
+    ->value('id',false)
+    ->bind('court');
+
+//BACK

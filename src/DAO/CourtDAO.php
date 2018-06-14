@@ -56,6 +56,20 @@ class CourtDAO extends DAO
     }
 
     /** Recherche d'un COURT */
+    public function findCourt($id)
+    {
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
+            ->from('court')
+            ->where('idCourt = ?');
+
+        $result = $this->getDb()->fetchAssoc($query,$id);
+
+        $court = $this->buildDomainObject($result);
+
+        return $court;
+    }
 
     /** Recherche Liste COURT par SPORT*/
 

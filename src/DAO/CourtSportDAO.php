@@ -30,8 +30,6 @@ class CourtSportDAO extends DAO
         $courtSport = new CourtSport();
         $courtSport->setIdCourtSport($row['idCourtSport']);
 
-        $idSport = $row['idSport'];
-
         if (array_key_exists('idCourt', $row)) {
             $idCourt = $row['idCourt'];
             $court = $this->courtDAO->find($idCourt);
@@ -47,6 +45,20 @@ class CourtSportDAO extends DAO
     }
 
     /** Recherche d'une association COURT / SPORT */
+    public function findCourtSport($id)
+    {
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
+            ->from('courtSport')
+            ->where('idCourtSport = ?');
+
+        $result = $this->getDb()->fetchAssoc($query, array($id));
+
+        $courtSport = $this->buildDomainObject($result);
+
+        return $courtSport;
+    }
 
     /** Recherche d'une liste d'association COURT / SPORT par SPORT */
 
