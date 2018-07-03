@@ -61,7 +61,6 @@ class CourtSportDAO extends DAO
     }
 
     /** Recherche d'une liste d'association COURT / SPORT par SPORT */
-
     public function findAllCourtSports()
     {
         $courtSports = array();

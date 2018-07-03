@@ -71,3 +71,15 @@ $app->get('/Courts/{id}', "sport\Controller\CourtController::CourtAction")
     ->bind('court');
 
 //BACK
+// Admin home page
+$app->get('/admin', function() use ($app) {
+    $users = $app['dao.user']->findAllUsers();
+    return $app['twig']->render('admin.html.twig', array(
+        'users' => $users));
+})->bind('admin');
+
+$app->get('/add_sport', function() use ($app) {
+
+    return $app['twig']->render('add_sport.html.twig');
+})->bind('sport_add');
+

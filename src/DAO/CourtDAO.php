@@ -88,7 +88,7 @@ class CourtDAO extends DAO
             $idCourt = $row['idCourt'];
             $courts[$idCourt] = $this->buildDomainObject($row);
         }
-
+        die($courts);
         return $courts;
     }
 

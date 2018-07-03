@@ -92,9 +92,8 @@ public function loadUserByUsername($username)
     }
     
    
-    public function save(User $user) {
-       
-        	 
+    public function save(User $user)
+    {
               $userData = array(
                  'nomUser' => $user->getNomUser(),
                  'prenomUser' => $user->getPrenomUser(),
@@ -106,5 +105,24 @@ public function loadUserByUsername($username)
              // The user has already been saved : update it
              $this->getDb()->insert('user', $userData);
          
-											}
+    }
+
+    /** Trouver tous les utilisateurs */
+    public function findAllUsers()
+    {
+        $users = array();
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
+            ->from('user');
+
+        $results = $this->getDb()->fetchAll($query);
+
+        foreach ($results as $row) {
+            $idUser = $row['idUser'];
+            $users[$idUser] = $this->buildDomainObject($row);
+        }
+
+        return $users;
+    }
 }
