@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Formulaire Ajout d'un terrain{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">{{ block('title') }}</h2>
+    <div class="well" style="background-color: #94ABB3;">
+        <form class="form-signin form-horizontal" role="form" action="{{ path('add_courtSport') }}" method="post">
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    Court :
+                    <select class="form-control" name="court" size="1" >
+                        {% for court in courts %}
+                            <option value={{ court.idCourt }}> {{ court.rueCourt }} {{ court.numeroRueCourt }} </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    Sport :
+                    <select class="form-control" name="sport" size="1" >
+                        {% for sport in sports %}
+                            <option value={{ sport.idSport }}>{{ sport.libelleSport }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span>Ajouter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

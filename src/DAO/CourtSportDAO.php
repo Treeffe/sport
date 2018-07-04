@@ -32,13 +32,13 @@ class CourtSportDAO extends DAO
 
         if (array_key_exists('idCourt', $row)) {
             $idCourt = $row['idCourt'];
-            $court = $this->courtDAO->find($idCourt);
+            $court = $this->courtDAO->findCourt($idCourt);
             $courtSport->setCourt($court);
         }
 
         if (array_key_exists('idSport', $row)) {
             $idSport = $row['idSport'];
-            $sport = $this->sportDAO->find($idSport);
+            $sport = $this->sportDAO->findSport($idSport);
             $courtSport->setSport($sport);
         }
         return $courtSport;
@@ -67,19 +67,57 @@ class CourtSportDAO extends DAO
         $query = $this->getDb()
             ->createQueryBuilder()
             ->select('*')
-            ->from('courtSport');
+            ->from('courtSport')
+            ->groupBy('idSport')
+            ->orderBy('idCourt');
 
         $results = $this->getDb()->fetchAll($query);
 
         foreach ($results as $row) {
-            $idCourtSport = $row['idCourt'];
-            $courtSports[$idCourtSport] = $this->buildDomainObject($row);
-        }
+            $idSport = $row['idSport'];
+            $idCourt = $row['idCourt'];
+            $idCourtSport = $row['idCourtSport'];
 
-        return $courtSports;
+            $courtSports[$idCourtSport] = $this->buildDomainObject($row);
+
+        }
+        //$courtSports2 = Array();
+        $courtSports3 = Array();
+        $sports = "";
+        $courtSport3 = new CourtSport();
+        foreach($courtSports as $courtSport)
+        {
+            if($sports != "")
+            {
+                $sports = $sports . ', ' . $courtSport->getSport()->getLibelleSport();
+            }
+            else
+            {
+                $sports = $courtSport->getSport()->getLibelleSport();
+            }
+            $courtSport->getSport()->setLibelleSport($sports);
+            $courtSport3->setCourt($courtSport->getCourt());
+            $courtSport3->setSport($courtSport->getSport());
+            $courtSport3->setIdCourtSport($courtSport->getIdCourtSport());
+            $courtSports3[$courtSport->getCourt()->getIdCourt()] =  $courtSport3;
+        }
+        //echo count($courtSports);
+        //echo count($courtSports3);
+        //die();
+        //$courtSport->getSport()->setLibelleSport($courtSport->getSport()->getLibelleSport().', '.$courtSport->getSport()->getLibelleSport());
+        return $courtSports3;
     }
 
     /** Remove d'une association COURT / SPORT */
 
     /** Add d'une association COURT / SPORT */
+    public function addCourtSport(CourtSport $courtSport)
+    {
+        $crtSportData = array(
+            'idSport' => $courtSport->getSport()->getIdSport(),
+            'idCourt' => $courtSport->getCourt()->getIdCourt()
+        );
+        $this->getDb()->insert('courtSport', $crtSportData);
+    }
+
 }

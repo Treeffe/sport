@@ -14,6 +14,7 @@ use sport\Form\Type\CommentType;
 use sport\Form\Type\UserType;
 
 use sport\Controller\UpgradeController;
+use sport\Controller\CourtSportControllerController;
 
 // Page d'accueil
 $app->get('/', function () use ($app) {
@@ -62,7 +63,7 @@ $app->match('/CatSport/{id}', "sport\Controller\UpgradeController::IdCatSportAct
     ->bind('IdCatSport');
 
 //Routes pour les Courts avec son sport
-$app->get('/Courts', "sport\Controller\CourtController::CourtsAction")
+$app->get('/Courts', "sport\Controller\CourtSportController::CourtsAction")
     ->bind('courts');
 
 //Route un Courts avec son sport
@@ -78,8 +79,11 @@ $app->get('/admin', function() use ($app) {
         'users' => $users));
 })->bind('admin');
 
-$app->get('/add_sport', function() use ($app) {
+$app->match('/add_courtSport', "sport\Controller\CourtSportController::AddCourtSportAction")
+    ->bind('add_courtSport');
 
-    return $app['twig']->render('add_sport.html.twig');
-})->bind('sport_add');
+$app->get('/formAdd_courtSport', "sport\Controller\CourtSportController::FormCourtSportAction")
+    ->bind('formAdd_courtSport');
+
+
 

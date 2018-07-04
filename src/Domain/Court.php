@@ -97,11 +97,11 @@ class Court
     }
 
     //
-    public function getCatSportCourt() {
+    public function getCatSport() {
         return $this->catSport;
     }
 
-    public function setCatSportCourt(CatSport $catSport) {
+    public function setCatSport(CatSport $catSport) {
         $this->catSport = $catSport;
     }
 

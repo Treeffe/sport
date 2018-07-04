@@ -37,18 +37,18 @@ class CourtDAO extends DAO
         $court->setImageCourt($row['imageCourt']);
         $court->setNumeroRueCourt($row['numeroRueCourt']);
         $court->setRueCourt($row['rueCourt']);
-        $court->setVilleCourt();
+        $court->setVilleCourt($row['ville']);
 
         if (array_key_exists('idCatSport', $row)) {
             $idCatSport = $row['idCatSport'];
-            $catSport = $this->catCourtDAO->find($idCatSport);
-            $court->setCourt($catSport);
+            $catSport = $this->catSportDAO->findByIdCatSport($idCatSport);
+            $court->setCatSport($catSport);
         }
 
         if (array_key_exists('idUser', $row)) {
             $idUser = $row['idUser'];
             $user = $this->userDAO->find($idUser);
-            $court->setUser($user);
+            $court->setUserCourt($user);
         }
 
         return $court;
@@ -62,9 +62,9 @@ class CourtDAO extends DAO
             ->createQueryBuilder()
             ->select('*')
             ->from('court')
-            ->where('idCourt = ?');
+            ->where('idCourt ='.$id);
 
-        $result = $this->getDb()->fetchAssoc($query,$id);
+        $result = $this->getDb()->fetchAssoc($query);
 
         $court = $this->buildDomainObject($result);
 
@@ -88,7 +88,6 @@ class CourtDAO extends DAO
             $idCourt = $row['idCourt'];
             $courts[$idCourt] = $this->buildDomainObject($row);
         }
-        die($courts);
         return $courts;
     }
 

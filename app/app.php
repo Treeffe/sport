@@ -68,7 +68,6 @@ $app['dao.courtSport'] = $app->share(function ($app) {
     $courtSport = new \sport\DAO\CourtSportDAO($app['db']);
     $courtSport->setCourtDAO($app['dao.court']);
     $courtSport->setSportDAO($app['dao.sport']);
-
     return $courtSport;
 });
 

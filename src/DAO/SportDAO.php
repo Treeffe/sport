@@ -21,7 +21,40 @@ class SportDAO extends DAO
     }
 
     /** Recherche de tous les sport */
+    public function findAllSport()
+    {
+        $Sports = array();
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
+            ->from('sport');
 
+        $results = $this->getDb()->fetchAll($query);
+
+        foreach ($results as $row) {
+            $idSport = $row['idSport'];
+            $Sports[$idSport] = $this->buildDomainObject($row);
+        }
+
+        return $Sports;
+    }
+
+
+    /** Recherche d'un sport */
+    public function findSport($id)
+    {
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
+            ->from('sport')
+            ->where('idSport ='.$id);
+
+        $result = $this->getDb()->fetchAssoc($query);
+
+        $sport = $this->buildDomainObject($result);
+
+        return $sport;
+    }
     /** Remove a Sport */
 
     /** Add a sport */

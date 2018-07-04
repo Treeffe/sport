@@ -14,10 +14,7 @@ use sport\Form\Type\UserType;
 class CourtController
 {
     /** Controller liste COURT */
-    public function CourtsAction(Application $app) {
-        $courts = $app['dao.courtSport']->findAllCourtSports();
-        return $app['twig']->render('ListCourt.html.twig', array('courts' => $courts));
-    }
+
 
     /** Controller liste de COURT par categorie*/
 
