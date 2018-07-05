@@ -1,0 +1,46 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Formulaire Ajout d'un terrain{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">{{ block('title') }}</h2>
+    <div class="well" style="background-color: #94ABB3;">
+        <form class="form-signin form-horizontal" role="form" action="{{ path('CourtSportSave') }}" method="post">
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    ville: <input type="text" name="ville" class="form-control" required autofocus>
+                </div>
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    numéro : <input type="text" name="numero" class="form-control">
+                </div>
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    rue: <input type="text" name="rue" class="form-control">
+                </div>
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    Code postale : <input type="text" name="cp"  class="form-control">
+                </div>
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    description: <input type="text" name="description"  class="form-control">
+                </div>
+                <div>
+                    <input type="hidden" name="user" value="{{  app.user.idUser  }}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    Sport :
+                    <select class="form-control" name="sport" size="1" >
+                        {% for sport in sports %}
+                            <option value={{ sport.idSport }}>{{ sport.libelleSport }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span>Ajouter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

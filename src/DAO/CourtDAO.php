@@ -71,8 +71,24 @@ class CourtDAO extends DAO
         return $court;
     }
 
-    /** Recherche Liste COURT par SPORT*/
 
+    public function findCourtSportByInfo(Court $court)
+    {
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
+            ->from('court')
+            ->where('ville = '."'".$court->getVilleCourt()."'")
+            ->andWhere('rueCourt = '."'". $court->getRueCourt()."'")
+            ->andWhere('cpCourt = '."'". $court->getCpCourt()."'")
+            ->andWhere('descriptionCourt = '."'". $court->getDescriptionCourt()."'");
+
+        $result = $this->getDb()->fetchAssoc($query);
+
+        $court = $this->buildDomainObject($result);
+
+        return $court;
+    }
     /** Recherche de tous les COURT */
     public function findAllCourt()
     {
@@ -92,6 +108,19 @@ class CourtDAO extends DAO
     }
 
     /** Add a COURT */
+    public function saveCourt(Court $court)
+    {
+        $courtData = array(
+            'cpCourt' => $court->getCpCourt(),
+            'descriptionCourt' => $court->getDescriptionCourt(),
+            'idUser' => $court->getUserCourt()->getIdUser(),
+            'imageCourt' => $court->getImageCourt(),
+            'numeroRueCourt' => $court->getNumeroRueCourt(),
+            'ville' => $court->getVilleCourt(),
+            'rueCourt' =>$court->getRueCourt()
+        );
+        $this->getDb()->insert('court', $courtData);
+    }
 
     /** Remove a COURT */
 

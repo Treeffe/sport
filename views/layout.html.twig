@@ -33,13 +33,6 @@
                 </div>
                 <div class="ongletBack">
                 <div class="collapse navbar-collapse" id="navbar-collapse-target">
-
-                    <ul class="nav navbar-nav  ">
-                        <li class="">
-                            <a href="#">Terrains</a>
-                        </li>
-
-                    </ul>
                     <ul class="nav navbar-nav ">
                         <li>
                             <a href="{{ path('courts') }}">Tous les terrains</a>
@@ -52,13 +45,15 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="#">Sport1</a>
+                                            <a href="">Basket-ball</a>
                                         </li>
                                         <li>
-                                            <a href="#">Sport2</a>
+                                            <a href="{{ path('courtSportFoot') }}">Foot</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('courtSportRun') }}">Running</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -68,7 +63,10 @@
                     {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
                         <ul class="nav navbar-nav ">
                             <li>
-                                <a href="formAdd_courtSport">Ajout de terrains</a>
+                                <a href="{{ path('formCourtSportSave') }}">Ajouter terrains</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('formAdd_courtSport') }}">Modifier terrains</a>
                             </li>
                         </ul>
                     {% endif %}

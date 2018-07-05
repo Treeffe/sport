@@ -11,6 +11,7 @@ namespace sport\Controller;
 use Silex\Application;
 use sport\DAO\CourtDAO;
 use sport\Domain\CourtSport;
+use sport\Domain\Court;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -58,4 +59,88 @@ class CourtSportController
 
         return $app['twig']->render('FormAddCourtSport.html.twig', array('sports' => $sports, 'courts' => $courts));
     }
+
+    public function CourtSportByBasketAction(Application $app) {
+        $courtSports = $app['dao.courtSport']->findListByBasket();
+        return $app['twig']->render('ListCourt.html.twig', array('courtSports' => $courtSports));
+    }
+
+    public function CourtSportByFootAction(Application $app) {
+        $courtSports = $app['dao.courtSport']->findListByFoot();
+        return $app['twig']->render('ListCourt.html.twig', array('courtSports' => $courtSports));
+    }
+
+    public function CourtSportByRunningAction(Application $app) {
+        $courtSports = $app['dao.courtSport']->findListByRun();
+        return $app['twig']->render('ListCourt.html.twig', array('courtSports' => $courtSports));
+    }
+
+    public function CourtSportSaveAction(Application $app)
+    {
+        $sports = $app['dao.sport']->findAllSport();
+        //enregistrement de court
+        $court = new Court();
+        $user = new User();
+            //verif + récupération attribut
+        if(isset($_POST["ville"]) && isset($_POST["rue"]))
+        {
+            if(isset($_POST["cp"]))
+            {
+            $cpCourt = $_POST["cp"];
+            $court->setCpCourt($cpCourt);
+            }
+            if(isset($_POST["description"])) {
+                $description = $_POST["description"];
+                $court->setDescriptionCourt($description);
+            }
+
+            if(isset($_POST["user"]))
+            {
+                $idUser = $_POST["user"];
+                $user = $app['dao.user']->findUser($idUser);
+                $court->setUserCourt($user);
+            }
+            if(isset($_POST["image"]))
+            {
+                $image = $_POST["image"];
+                $court->setImageCourt($image);
+            }
+            if(isset($_POST["numero"]))
+            {
+                $numero = $_POST["numero"];
+                $court->setNumeroRueCourt($numero);
+            }
+            $rue = $_POST["rue"];
+            $court->setRueCourt($rue);
+            $ville = $_POST["ville"];
+            $court->setVilleCourt($ville);
+            $court->setImageCourt('images/default.jpg');
+        }
+        $app['dao.court']->saveCourt($court);
+
+        //enregistrement du courtSport
+
+        $courtSport = new CourtSport();
+        $idSport = $_POST["sport"];
+
+        //alloc
+        $courtSport->setCourt($app['dao.court']->findCourtSportByInfo($court));
+        $courtSport->setSport($app['dao.sport']->findSport($idSport));
+        //sauvegarde
+        $app['dao.courtSport']->addCourtSport($courtSport);
+
+
+        $courtSports = $app['dao.courtSport']->findAllCourtSports();
+        return $app['twig']->render('ListCourt.html.twig', array('courtSports' => $courtSports ));
+    }
+
+    public function FormCourtSportSaveAction(Application $app)
+    {
+        $sports = Array();
+        $sports = $app['dao.sport']->findAllSport();
+
+        return $app['twig']->render('AddFormCompletely_CourtSport.html.twig', array('sports' => $sports));
+    }
+
+
 }

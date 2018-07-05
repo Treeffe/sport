@@ -61,6 +61,66 @@ class CourtSportDAO extends DAO
     }
 
     /** Recherche d'une liste d'association COURT / SPORT par SPORT */
+    public function findListByBasket()
+    {
+        $courtSports = array();
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
+            ->from('courtSport', 'cs')
+            ->join('cs','sport', 's','s.idSport = cs.idSport')
+            ->where('libelleSport like '."'%asket%'");
+
+        $results = $this->getDb()->fetchAll($query);
+
+        foreach ($results as $row) {
+            $idCourtSport = $row['idCourtSport'];
+            $courtSports[$idCourtSport] = $this->buildDomainObject($row);
+        }
+
+        return $courtSports;
+    }
+
+    public function findListByFoot()
+    {
+        $courtSports = array();
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
+            ->from('courtSport', 'cs')
+            ->join('cs','sport', 's','s.idSport = cs.idSport')
+            ->where('libelleSport like'."'%oot%'");
+
+        $results = $this->getDb()->fetchAll($query);
+
+        foreach ($results as $row) {
+            $idCourtSport = $row['idCourtSport'];
+            $courtSports[$idCourtSport] = $this->buildDomainObject($row);
+        }
+
+        return $courtSports;
+    }
+
+    public function findListByRun()
+    {
+        $courtSports = array();
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
+            ->from('courtSport', 'cs')
+            ->join('cs','sport', 's','s.idSport = cs.idSport')
+            ->where('libelleSport like '. "'%unning%'");
+        //echo $query;
+        //die();
+        $results = $this->getDb()->fetchAll($query);
+
+        foreach ($results as $row) {
+            $idCourtSport = $row['idCourtSport'];
+            $courtSports[$idCourtSport] = $this->buildDomainObject($row);
+        }
+
+        return $courtSports;
+    }
     public function findAllCourtSports()
     {
         $courtSports = array();
@@ -68,7 +128,6 @@ class CourtSportDAO extends DAO
             ->createQueryBuilder()
             ->select('*')
             ->from('courtSport')
-            ->groupBy('idSport')
             ->orderBy('idCourt');
 
         $results = $this->getDb()->fetchAll($query);
@@ -81,12 +140,17 @@ class CourtSportDAO extends DAO
             $courtSports[$idCourtSport] = $this->buildDomainObject($row);
 
         }
-        //$courtSports2 = Array();
+
+        /*
         $courtSports3 = Array();
         $sports = "";
         $courtSport3 = new CourtSport();
         foreach($courtSports as $courtSport)
         {
+            $courtSport->getSport()->setLibelleSport($sports);
+            $courtSport3->setCourt($courtSport->getCourt());
+            $courtSport3->setIdCourtSport($courtSport->getIdCourtSport());
+            $courtSports3[$courtSport->getCourt()->getIdCourt()] =  $courtSport3;
             if($sports != "")
             {
                 $sports = $sports . ', ' . $courtSport->getSport()->getLibelleSport();
@@ -95,17 +159,11 @@ class CourtSportDAO extends DAO
             {
                 $sports = $courtSport->getSport()->getLibelleSport();
             }
-            $courtSport->getSport()->setLibelleSport($sports);
-            $courtSport3->setCourt($courtSport->getCourt());
-            $courtSport3->setSport($courtSport->getSport());
-            $courtSport3->setIdCourtSport($courtSport->getIdCourtSport());
-            $courtSports3[$courtSport->getCourt()->getIdCourt()] =  $courtSport3;
+
         }
-        //echo count($courtSports);
-        //echo count($courtSports3);
-        //die();
-        //$courtSport->getSport()->setLibelleSport($courtSport->getSport()->getLibelleSport().', '.$courtSport->getSport()->getLibelleSport());
-        return $courtSports3;
+        */
+
+        return $courtSports;
     }
 
     /** Remove d'une association COURT / SPORT */

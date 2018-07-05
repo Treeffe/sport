@@ -122,7 +122,22 @@ public function loadUserByUsername($username)
             $idUser = $row['idUser'];
             $users[$idUser] = $this->buildDomainObject($row);
         }
-
         return $users;
+    }
+
+    public function findUser($idUser)
+    {
+        $user = new User();
+        $query = $this->getDb()
+            ->createQueryBuilder()
+            ->select('*')
+            ->from('user')
+            ->where('idUser = '.$idUser);
+
+
+        $result = $this->getDb()->fetchAssoc($query);
+        $user = $this->buildDomainObject($result);
+
+        return $user;
     }
 }

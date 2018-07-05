@@ -71,6 +71,7 @@ $app->get('/Courts/{id}', "sport\Controller\CourtController::CourtAction")
     ->value('id',false)
     ->bind('court');
 
+
 //BACK
 // Admin home page
 $app->get('/admin', function() use ($app) {
@@ -82,8 +83,28 @@ $app->get('/admin', function() use ($app) {
 $app->match('/add_courtSport', "sport\Controller\CourtSportController::AddCourtSportAction")
     ->bind('add_courtSport');
 
+$app->match('/add_courtSportCompletely', "sport\Controller\CourtSportController::CourtSportSaveAction")
+    ->bind('CourtSportSave');
+
+
+//Formulaire ajout court
+$app->get('/addForm_courtSportCompletely', "sport\Controller\CourtSportController::FormCourtSportSaveAction")
+    ->bind('formCourtSportSave');
+
 $app->get('/formAdd_courtSport', "sport\Controller\CourtSportController::FormCourtSportAction")
     ->bind('formAdd_courtSport');
+
+
+//Route Liste par différent sport
+$app->get('/courtSportBasket', "sport\Controller\CourtSportController::CourtSportByBasketAction")
+    ->bind('courtSportBasket');
+
+$app->get('/courtSportFoot', "sport\Controller\CourtSportController::CourtSportByFootAction")
+    ->bind('courtSportFoot');
+
+$app->get('/courtSportRun', "sport\Controller\CourtSportController::CourtSportByRunningAction")
+    ->bind('courtSportRun');
+
 
 
 

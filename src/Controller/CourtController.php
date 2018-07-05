@@ -27,6 +27,12 @@ class CourtController
         $court = $app['dao.courtSport']->findCourtSport($id);
         return $app['twig']->render('CourtDetailed.html.twig', array('court' => $court));
     }
+
+    public function CourtActionByInfo(Application $app, $court) {
+        $court = $app['dao.courtSport']->findCourtSportByInfo($court);
+        return $app['twig']->render('CourtDetailed.html.twig', array('court' => $court));
+    }
+
     /** Controller remove d'un COURT */
 
     /** Controller ajout d'un COURT */

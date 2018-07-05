@@ -89,7 +89,7 @@ class Court
 
     //
     public function getUserCourt() {
-        return $this->userCourt;
+        return $this->user;
     }
 
     public function setUserCourt(User $user) {
