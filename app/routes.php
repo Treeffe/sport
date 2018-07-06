@@ -88,6 +88,14 @@ $app->match('/add_courtSport', "sport\Controller\CourtSportController::AddCourtS
 $app->match('/add_courtSportCompletely', "sport\Controller\CourtSportController::CourtSportSaveAction")
     ->bind('CourtSportSave');
 
+$app->match('/admin/sport/{id}/delete', "sport\Controller\adminController::RemoveSportAction")
+    ->bind('removeSport');
+
+$app->match('/admin/court/{id}/delete', "sport\Controller\adminController::RemoveCourtAction");
+
+$app->match('/admin/user/{id}/delete', "sport\Controller\adminController::RemoveUserAction");
+
+
 
 //Formulaire ajout court
 $app->get('/addForm_courtSportCompletely', "sport\Controller\CourtSportController::FormCourtSportSaveAction")
@@ -109,6 +117,8 @@ $app->get('/courtSportRun', "sport\Controller\CourtSportController::CourtSportBy
 
 $app->match('/saveSport', "sport\Controller\SportController::saveSportAction")
     ->bind('saveSport');
+
+
 
 
 

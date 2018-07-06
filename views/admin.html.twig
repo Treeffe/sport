@@ -44,9 +44,11 @@
                                 <td>{{ court.numeroRueCourt }} {{ court.rueCourt }} {{ court.cpCourt }} {{ court.villeCourt }}</td>
                                 <td>{{ court.descriptionCourt }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
+                                    <form class="form-signin form-horizontal" role="form" action="{{ app.request.basepath }}/admin/court/{{ court.idCourt }}/delete" method="post">
+                                        <button type="submit" class="btn btn-info">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -70,9 +72,11 @@
                             <tr>
                                 <td>{{ sport.libelleSport }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
+                                    <form class="form-signin form-horizontal" role="form" action="{{ app.request.basepath }}/admin/sport/{{ sport.idSport }}/delete" method="post">
+                                        <button type="submit" class="btn btn-info">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -104,9 +108,11 @@
                                 <td>{{ user.loginUser }}</td>
                                 <td>{{ user.role }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
+                                    <form class="form-signin form-horizontal" role="form" action="{{ app.request.basepath }}/admin/user/{{ user.idUser }}/delete" method="post">
+                                        <button type="submit" class="btn btn-info">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         {% endfor %}

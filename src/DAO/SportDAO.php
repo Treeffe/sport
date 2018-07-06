@@ -56,6 +56,13 @@ class SportDAO extends DAO
         return $sport;
     }
     /** Remove a Sport */
+    public function removeSport($id)
+    {
+        //$sport = $this->findSport($id);
+        $this->getDb()->delete('sport',array('idSport' => $id));
+    }
+
+
 
     /** Add a sport */
     public function saveSport(Sport $sport)

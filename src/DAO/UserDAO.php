@@ -140,4 +140,10 @@ public function loadUserByUsername($username)
 
         return $user;
     }
+
+    public function removeUser($id)
+    {
+        //$user = $this->findUser($id);
+        $this->getDb()->delete('user', array('idUser' => $id));
+    }
 }

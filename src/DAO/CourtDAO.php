@@ -123,6 +123,11 @@ class CourtDAO extends DAO
     }
 
     /** Remove a COURT */
+    public function removeCourt($id)
+    {
+        $court = $this->findCourt($id);
+        $this->getDb()->delete('court', array('idCourt' => $id) );
+    }
 
-    /** Modification a COURT */
+/** Modification a COURT */
 }
