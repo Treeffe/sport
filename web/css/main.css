@@ -2525,6 +2525,16 @@ shortcodes page css
   margin-left: 15px;
 }
 
+.backGroundColorGrey
+{
+  background-color: lightgrey;
+}
+
+.spacement
+{
+  padding-bottom: 30px;
+  padding-top: 20px;
+}
 
 
 

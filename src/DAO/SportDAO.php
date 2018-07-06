@@ -58,5 +58,12 @@ class SportDAO extends DAO
     /** Remove a Sport */
 
     /** Add a sport */
+    public function saveSport(Sport $sport)
+    {
+        $sportData = array(
+            'libelleSport' => $sport->getLibelleSport()
+        );
+        $this->getDb()->insert('sport', $sportData);
+    }
 
 }

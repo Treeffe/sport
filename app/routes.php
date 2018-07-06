@@ -76,8 +76,10 @@ $app->get('/Courts/{id}', "sport\Controller\CourtController::CourtAction")
 // Admin home page
 $app->get('/admin', function() use ($app) {
     $users = $app['dao.user']->findAllUsers();
+    $courts = $app['dao.court']->findAllCourt();
+    $sports = $app['dao.sport']->findAllSport();
     return $app['twig']->render('admin.html.twig', array(
-        'users' => $users));
+        'users' => $users, 'courts' => $courts, 'sports' =>$sports));
 })->bind('admin');
 
 $app->match('/add_courtSport', "sport\Controller\CourtSportController::AddCourtSportAction")
@@ -105,6 +107,8 @@ $app->get('/courtSportFoot', "sport\Controller\CourtSportController::CourtSportB
 $app->get('/courtSportRun', "sport\Controller\CourtSportController::CourtSportByRunningAction")
     ->bind('courtSportRun');
 
+$app->match('/saveSport', "sport\Controller\SportController::saveSportAction")
+    ->bind('saveSport');
 
 
 
