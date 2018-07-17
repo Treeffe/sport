@@ -84,6 +84,30 @@ class CourtSportController
             //verif + récupération attribut
         if(isset($_POST["ville"]) && isset($_POST["rue"]))
         {
+            $uploaddir = '../uploads/';
+            $uploadfile = $uploaddir . basename($_FILES['image']['name']);
+
+            echo '<pre>';
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+                echo "File is valid, and was successfully uploaded.\n";
+            } else {
+                echo "Possible file upload attack!\n";
+            }
+            die(test);
+            $uploads_dir = "/uploads"."/".$_FILES['image']['name'] ;
+            echo '<pre>';
+            //var_dump($_FILES);
+            //var_dump($_FILES['image']['name']);
+            var_dump($_POST['image']);
+            //var_dump($uploads_dir);
+            $tmp_name = $_FILES["image"]["tmp_name"];
+            echo "ok";
+            $rep = move_uploaded_file($tmp_name, "$uploads_dir");
+            echo "ok2";
+            echo $rep;
+            echo "ok3";
+            echo '</pre>';
+            die("bonjour");
             if(isset($_POST["cp"]))
             {
             $cpCourt = $_POST["cp"];

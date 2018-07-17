@@ -5,7 +5,7 @@
 {% block content %}
     <h2 class="text-center">{{ block('title') }}</h2>
     <div class="well" style="background-color: #94ABB3;">
-        <form class="form-signin form-horizontal" role="form" action="{{ path('CourtSportSave') }}" method="post">
+        <form class="form-signin form-horizontal" role="form" action="{{ path('CourtSportSave') }}" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                     ville: <input type="text" name="ville" class="form-control" required autofocus>
@@ -21,6 +21,9 @@
                 </div>
                 <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                     description: <input type="text" name="description"  class="form-control">
+                </div>
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    photo : <input type="file" name="image">
                 </div>
                 <div>
                     <input type="hidden" name="user" value="{{  app.user.idUser  }}" class="form-control">
