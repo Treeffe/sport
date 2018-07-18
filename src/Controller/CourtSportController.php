@@ -84,30 +84,7 @@ class CourtSportController
             //verif + récupération attribut
         if(isset($_POST["ville"]) && isset($_POST["rue"]))
         {
-            $uploaddir = '../uploads/';
-            $uploadfile = $uploaddir . basename($_FILES['image']['name']);
 
-            echo '<pre>';
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
-                echo "File is valid, and was successfully uploaded.\n";
-            } else {
-                echo "Possible file upload attack!\n";
-            }
-            die(test);
-            $uploads_dir = "/uploads"."/".$_FILES['image']['name'] ;
-            echo '<pre>';
-            //var_dump($_FILES);
-            //var_dump($_FILES['image']['name']);
-            var_dump($_POST['image']);
-            //var_dump($uploads_dir);
-            $tmp_name = $_FILES["image"]["tmp_name"];
-            echo "ok";
-            $rep = move_uploaded_file($tmp_name, "$uploads_dir");
-            echo "ok2";
-            echo $rep;
-            echo "ok3";
-            echo '</pre>';
-            die("bonjour");
             if(isset($_POST["cp"]))
             {
             $cpCourt = $_POST["cp"];
@@ -124,21 +101,32 @@ class CourtSportController
                 $user = $app['dao.user']->findUser($idUser);
                 $court->setUserCourt($user);
             }
-            if(isset($_POST["image"]))
-            {
-                $image = $_POST["image"];
-                $court->setImageCourt($image);
+
+            $uploaddir = 'uploads/';
+            $uploadfile = $uploaddir . basename($_FILES['image']['name']);
+            //test
+            //echo '<pre>';
+            //var_dump($_POST["image"]);
+            //die("oiu");
+            //echo '</pre>';
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+                $court->setImageCourt($_FILES['image']['name']);
+            } else {
+                $court->setImageCourt('images/default.jpg');
             }
+
             if(isset($_POST["numero"]))
             {
                 $numero = $_POST["numero"];
                 $court->setNumeroRueCourt($numero);
             }
             $rue = $_POST["rue"];
+
             $court->setRueCourt($rue);
             $ville = $_POST["ville"];
             $court->setVilleCourt($ville);
-            $court->setImageCourt('images/default.jpg');
+            //$court->setImageCourt('images/default.jpg');
         }
         $app['dao.court']->saveCourt($court);
 
@@ -152,8 +140,6 @@ class CourtSportController
         $courtSport->setSport($app['dao.sport']->findSport($idSport));
         //sauvegarde
         $app['dao.courtSport']->addCourtSport($courtSport);
-
-
         $courtSports = $app['dao.courtSport']->findAllCourtSports();
         return $app['twig']->render('ListCourt.html.twig', array('courtSports' => $courtSports ));
     }

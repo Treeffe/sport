@@ -23,7 +23,7 @@
                     </thead>
                     {% for courtSport in courtSports %}
                             <tr>
-                                <td><img class="img" src={{ app.request.basepath }}/{{ courtSport.court.imageCourt }}></td>
+                                <td><img class="img" src={{ app.request.basepath }}/uploads/{{ courtSport.court.imageCourt }}></td>
                                 <td>{{ courtSport.court.numeroRueCourt }} {{ courtSport.court.rueCourt }} {{ courtSport.court.cpCourt }} {{ courtSport.court.villeCourt }}</td>
                                 <td>{{ courtSport.court.descriptionCourt }}</td>
                                 <td>{{ courtSport.sport.libelleSport }}</td>

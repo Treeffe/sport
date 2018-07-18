@@ -135,10 +135,9 @@ class CourtSportDAO extends DAO
         foreach ($results as $row) {
             $idSport = $row['idSport'];
             $idCourt = $row['idCourt'];
+
             $idCourtSport = $row['idCourtSport'];
-
             $courtSports[$idCourtSport] = $this->buildDomainObject($row);
-
         }
 
         /*

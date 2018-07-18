@@ -39,13 +39,8 @@ class CourtDAO extends DAO
         $court->setRueCourt($row['rueCourt']);
         $court->setVilleCourt($row['ville']);
 
-        if (array_key_exists('idCatSport', $row)) {
-            $idCatSport = $row['idCatSport'];
-            $catSport = $this->catSportDAO->findByIdCatSport($idCatSport);
-            $court->setCatSport($catSport);
-        }
-
-        if (array_key_exists('idUser', $row)) {
+        if (array_key_exists('idUser', $row))
+        {
             $idUser = $row['idUser'];
             $user = $this->userDAO->find($idUser);
             $court->setUserCourt($user);
