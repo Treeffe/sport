@@ -152,5 +152,19 @@ class CourtSportController
         return $app['twig']->render('AddFormCompletely_CourtSport.html.twig', array('sports' => $sports));
     }
 
+    public function SearchCourtSportAction(Application $app)
+    {
+        $filtre = $_POST["search"];
+        $listFiltres = explode( ' ', $filtre );
+        /*
+        var_dump($regs1);
+        var_dump($filtre);
+        die();
+        */
+
+        $courtSports = $app['dao.courtSport']->findCourtSportBySearch($listFiltres);
+        return $app['twig']->render('ListCourt.html.twig', array('courtSports' => $courtSports ));
+    }
+
 
 }

@@ -177,4 +177,32 @@ class CourtSportDAO extends DAO
         $this->getDb()->insert('courtSport', $crtSportData);
     }
 
+
+    public function findCourtSportBySearch($listFiltres)
+    {
+        $courtSports = array();
+        foreach ($listFiltres as $filtre)
+        {
+            $query = $this->getDb()
+                ->createQueryBuilder()
+                ->select('*')
+                ->from('courtSport', 'cs')
+                ->join('cs','sport', 's','s.idSport = cs.idSport')
+                ->join('cs','court', 'c','c.idCourt = cs.idCourt')
+                ->where('libelleSport like '. "'%$filtre%'")
+                ->orWhere('cpCourt like '. "'%$filtre%'")
+                ->orWhere('descriptionCourt like '. "'%$filtre%'")
+                ->orWhere('rueCourt like '. "'%$filtre%'")
+                ->orWhere('ville like '. "'%$filtre%'");
+
+            $results = $this->getDb()->fetchAll($query);
+            foreach ($results as $row) {
+                $idCourtSport = $row['idCourtSport'];
+                $courtSports[$idCourtSport] = $this->buildDomainObject($row);
+            }
+        }
+
+        return $courtSports;
+    }
+
 }

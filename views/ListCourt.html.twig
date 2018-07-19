@@ -4,36 +4,25 @@
 
 {% block content %}
 
-    <div style="margin-top: 5%">
+    <div>
         <h2 class="text-center">{{ block('title') }}</h2>
     </div>
-
-    <div>
-        {% if courtSports %}
-
-            <div class="table-responsive">
-                <table class="table table-hover table-condensed">
-                    <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>adresse</th>
-                        <th>Description</th>
-                        <th>Sports</th>
-                    </tr>
-                    </thead>
-                    {% for courtSport in courtSports %}
-                            <tr>
-                                <td><img class="img" src={{ app.request.basepath }}/uploads/{{ courtSport.court.imageCourt }}></td>
-                                <td>{{ courtSport.court.numeroRueCourt }} {{ courtSport.court.rueCourt }} {{ courtSport.court.cpCourt }} {{ courtSport.court.villeCourt }}</td>
-                                <td>{{ courtSport.court.descriptionCourt }}</td>
-                                <td>{{ courtSport.sport.libelleSport }}</td>
-                            </tr>
-                    {% endfor %}
-
-                </table>
-            </div>
-        {% else %}
-            <div class="alert alert-warning">Aucun Terrain de sport trouvé.</div>
-        {% endif %}
+    <div id="columns">
+        {% for courtSport in courtSports %}
+            <figure>
+                <img class="img" src={{ app.request.basepath }}/uploads/{{ courtSport.court.imageCourt }}>
+                <figcaption>
+                    <p>
+                        adresse : {{ courtSport.court.numeroRueCourt }} {{ courtSport.court.rueCourt }} {{ courtSport.court.cpCourt }} {{ courtSport.court.villeCourt }}
+                    </p>
+                    <p>
+                        info : {{ courtSport.court.descriptionCourt }}
+                    </p>
+                    <p>
+                        sport : {{ courtSport.sport.libelleSport }}
+                    </p>
+                </figcaption>
+            </figure>
+        {% endfor %}
     </div>
 {% endblock %}

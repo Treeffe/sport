@@ -118,6 +118,10 @@ $app->get('/courtSportRun', "sport\Controller\CourtSportController::CourtSportBy
 $app->match('/saveSport', "sport\Controller\SportController::saveSportAction")
     ->bind('saveSport');
 
+//route Recherche
+$app->match('/search', "sport\Controller\CourtSportController::SearchCourtSportAction")
+    ->bind('search');
+
 
 
 
