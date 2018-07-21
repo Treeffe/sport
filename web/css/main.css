@@ -2627,3 +2627,9 @@ div#columns:hover figure:not(:hover) {
   flex-direction: row;
   padding: 5px;
 }
+
+.imgDetail
+{
+  width: 280px;
+  height: 280px;
+}
