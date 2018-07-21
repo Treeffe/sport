@@ -1,0 +1,47 @@
+{% extends "layout.html.twig" %}
+{% set adminMenu = true %}
+
+{% block title %}Détail terrain{% endblock %}
+
+{% block content %}
+
+    {% if courtSport %}
+        <div class="table-responsive">
+
+            <div style="margin-top: 5%" class="jumbotron">
+                <div class="col-sm-6 col-md-4">
+                    <h2>jdjdjdjdj</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+
+                    </div>
+                    <div class="col-sm-6 col-md-6" >
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home">Description probleme</a></li>
+                            <li><a data-toggle="tab" href="#menu1">Categorie</a></li>
+                            <li><a data-toggle="tab" href="#menu2">Solution</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">
+                                <h3>Titre du probleme : </h3><h5>jdfkffkfkf</h5>
+                                <h3>description du probleme : </h3><h5>kdkdkdkdk</h5>
+                            </div>
+                            <div id="menu1" class="tab-pane fade">
+                                <h3>categorie :</h3><h4>fjfkfkfkfk</h4>
+                            </div>
+                            <div id="menu2" class="tab-pane fade">
+                                <h3>description de la solution :</h3><h4> d,jdkfdklsd,cokze,ncvoldcplzd,cp</h4>
+                                <h3>Commentaire de la solution :</h3> <h4>dlkc,sdlvndlc,</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-warning">Aucune categorie trouvée.</div>
+    {% endif %}
+
+{% endblock %}

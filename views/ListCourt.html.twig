@@ -9,20 +9,22 @@
     </div>
     <div id="columns">
         {% for courtSport in courtSports %}
-            <figure>
-                <img class="img" src={{ app.request.basepath }}/uploads/{{ courtSport.court.imageCourt }}>
-                <figcaption>
-                    <p>
-                        adresse : {{ courtSport.court.numeroRueCourt }} {{ courtSport.court.rueCourt }} {{ courtSport.court.cpCourt }} {{ courtSport.court.villeCourt }}
-                    </p>
-                    <p>
-                        info : {{ courtSport.court.descriptionCourt }}
-                    </p>
-                    <p>
-                        sport : {{ courtSport.sport.libelleSport }}
-                    </p>
-                </figcaption>
-            </figure>
+            <a href="{{ app.request.basepath }}/detailedTerrain/{{ courtSport.idCourtSport }}">
+                <figure>
+                    <img class="img" src="{{ app.request.basepath }}/uploads/{{ courtSport.court.imageCourt }}">
+                    <figcaption>
+                        <p>
+                            adresse : {{ courtSport.court.numeroRueCourt }} {{ courtSport.court.rueCourt }} {{ courtSport.court.cpCourt }} {{ courtSport.court.villeCourt }}
+                        </p>
+                        <p>
+                            info : {{ courtSport.court.descriptionCourt }}
+                        </p>
+                        <p>
+                            sport : {{ courtSport.sport.libelleSport }}
+                        </p>
+                    </figcaption>
+                </figure>
+            </a>
         {% endfor %}
     </div>
 {% endblock %}
