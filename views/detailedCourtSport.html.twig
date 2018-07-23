@@ -1,0 +1,36 @@
+{% extends "layout.html.twig" %}
+{% set adminMenu = true %}
+
+{% block title %}Détail terrain{% endblock %}
+
+{% block content %}
+
+    {% if courtSport %}
+        <div class="table-responsive">
+
+            <div style="margin-top: 5%" class="jumbotron">
+                <div class="col-sm-6 col-md-4">
+                    <img class="imgDetail" src="{{ app.request.basepath }}/uploads/{{ courtSport.court.imageCourt }}">
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        Information terrain
+                    </div>
+                    <div class="col-sm-6 col-md-6" >
+
+                        <div class="tab-content">
+                            <div id="home" class="">
+                                <h3>Adresse : </h3><h5>{{ courtSport.court.numeroRueCourt }} {{ courtSport.court.rueCourt }} {{ courtSport.court.cpCourt }} {{ courtSport.court.villeCourt }}</h5>
+                                <h3>description : </h3><h5>{{ courtSport.court.descriptionCourt }}</h5>
+                                <h3>sport pratiqué : </h3><h5>{{ courtSport.sport.libelleSport }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-warning">Aucune categorie trouvée.</div>
+    {% endif %}
+
+{% endblock %}

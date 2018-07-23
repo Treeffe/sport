@@ -122,6 +122,9 @@ $app->match('/saveSport', "sport\Controller\SportController::saveSportAction")
 $app->match('/search', "sport\Controller\CourtSportController::SearchCourtSportAction")
     ->bind('search');
 
+$app->get('/detailedTerrain/{id}', "sport\Controller\CourtSportController::DetailCourtSmportAction")
+    ->value('id',false)
+    ->bind('detailCourtSport');
 
 
 

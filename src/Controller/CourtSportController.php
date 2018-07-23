@@ -166,5 +166,11 @@ class CourtSportController
         return $app['twig']->render('ListCourt.html.twig', array('courtSports' => $courtSports ));
     }
 
+    public function DetailCourtSmportAction(Application $app,$id) {
+
+        $courtSport = $app['dao.courtSport']->findCourtSportById($id);
+
+        return $app['twig']->render('detailedCourtSport.html.twig', array('courtSport' => $courtSport));
+    }
 
 }

@@ -45,7 +45,7 @@ class CourtSportDAO extends DAO
     }
 
     /** Recherche d'une association COURT / SPORT */
-    public function findCourtSport($id)
+    public function findCourtSportById($id)
     {
         $query = $this->getDb()
             ->createQueryBuilder()
