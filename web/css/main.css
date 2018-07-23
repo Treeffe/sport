@@ -2556,7 +2556,7 @@ div#columns figure img {
 }
 
 div#columns figure figcaption {
-  font-size: .9rem;
+  font-size: 1em;
   color: #444;
   line-height: 1.5;
 }
