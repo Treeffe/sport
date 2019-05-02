@@ -2527,7 +2527,7 @@ shortcodes page css
 body {
   background: url(//subtlepatterns.com/patterns/scribble_light.png);
   font-family: Calluna, Arial, sans-serif;
-  min-height: 1000px;
+  /*min-height: 1000px;*/
 }
 #columns {
   column-width: 320px;

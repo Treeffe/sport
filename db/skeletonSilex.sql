@@ -63,6 +63,6 @@ SET time_zone = "+00:00";
       idSport int NOT NULL,
       PRIMARY KEY (idCourtSport)
     );
-    //treef;secret
+    -- treef;secret
     INSERT INTO user VALUES (0, 'thibaut', 'cornado',  'cornado@hotmail.fr', 'X', 'Lyon', 'treef', 'YRKBx8oeQ2sLBrEqjJeqc8UwC9HPp+Ed6dhCeeHPQJ9vY4vbMepUbS14/rE6njWr4RZd4E+tU4pcOMI0h8Z6UA==', 'mnPEaJNz6,rUPbAYGg6$UXt', 'ROLE_ADMIN');
     INSERT INTO CatSport VALUES (0, 'test');
